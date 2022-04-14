@@ -1,29 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
 
-
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear</title>
+    </head>
+    <body>
 <!-- Formulario de  Post  , pasado en la vista del Post-->
-<div class="container mt-5">
- {% if formulario.errors %}
-        <p style="color:red"> Problemas con los datos cargados</p>
-    {% endif %}
-        <form  method='POST' class="form-group">
-            {% csrf_token %}
-            <table>
-                {{formulario.as_table}}
-            </table>
-           <hr> 
-           <p><input type="submit" class="btn btn-primary" value="Agregar Post"> </p>
-        </form>
-</div>
-</body>
-</html>
+            <h1>Creacion del Post :</h1>
+        <div class="container mt-5">
+            {% if formulario.errors %}
+             <p style="color:red"> Problemas con los datos cargados</p>
+              {% endif %}
+               <form  method='POST' class="form-group">
+                   {% csrf_token %}
+                 <table>
+                       {{formulario.as_table}}
+                </table>
+                <hr> 
+                <p><input type="submit" class="btn btn-primary" value="Agregar Post"> </p>
+                </form>
+        </div>
+   </body>
+   </html>
+
+
+
 

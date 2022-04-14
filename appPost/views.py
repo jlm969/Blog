@@ -17,9 +17,10 @@ from django.contrib.auth.decorators import login_required
 from appPost.models import Post, Comentario, VistaPost, MeGusta
 
 
-# Create your views here.
+
 
 # Create your views here.
+
 
 def inicio(request):
 
@@ -55,18 +56,15 @@ class PostLista(ListView):
 # CreateView -- Crear un item  
 class PostCrear(CreateView):
     model = Post
-   # success_url = "/appPost/lista"
-    template_name = "appPost/postCrear.html" 
-    fields = ['titulo','contenido' ]
-    
-    
-
+    fields = ['titulo','contenido','imagen']
+    success_url = "/"
+  
 # UpdateView -- Actualizar  un item
 class PostActualizar(UpdateView):
     model = Post
     fields = ['titulo','contenido','imagen' ]
-    # success_url = "/appPost/lista"
-    #template_name = "appPost/postActualizar.html" 
+    success_url = "/"
+ 
 
 
 # DetailView -- obtengo un solo item
@@ -78,5 +76,5 @@ class PostDetalle(DetailView):
 # DeleteView -- Borrar un item
 class PostEliminar(DeleteView):
     model = Post
-    success_url = "post/lista" 
+    success_url = "/" 
 

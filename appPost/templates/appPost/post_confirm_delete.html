@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirma Elimiar</title>
 </head>
 <body>
-    <h1>Confirma Elimiminar Post</h1>
-   
-    <form  method="post">
-        {% csrf_token %}
-        Esta seguro que quiere eliminar el Post :   {{object}} ? 
-        <input type="submit" value="Confirmar">
-        <p>
-            <a href="{%url 'postLista'%}">Volver</a>
-        </p>
-    </form>
+    <div class="container">
+        <h1>Confirma Eliminar</h1>  
+            <form  method="post">
+            {% csrf_token %}
+            Esta seguro que quiere eliminar el Post :   {{object}} ? 
+            <button class='btn btn-primary' type='submit'>Confirmar</button>
+                <p>
+                    <a href="{%url 'postLista'%}">Volver</a>
+                </p>
+            </form>
+    </div>       
 </body>
 </html>

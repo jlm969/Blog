@@ -1,11 +1,16 @@
-from dataclasses import field
 from django import forms
 from models import Post
 
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = '__all__'
+# class PostForm(forms.ModelForm):
+#     class Meta:
+#         model = Post
+#         fields = '__all__'
+
+
+class PostForm(forms.Form):
+     class Meta:
+         model = Post
+         fields = '__all__'
 
 #class ClienteFormulario(forms.Form):
 #     # Campos del Formulario
