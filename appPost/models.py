@@ -1,9 +1,8 @@
+from tkinter import CASCADE
 from django.db import models
-#from django.contrib.auth.models import User 
-#from django.contrib.auth.forms import UserCreationForm
-#from django import forms
-
+from django.contrib.auth.models import User 
 # Create your models here.
+
 
 # Creo mi propio formulario para registro de usuarios a partir de la clase formulario 
 # UserCreationForm

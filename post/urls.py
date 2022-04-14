@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.urls import path, include
+from django.conf.urls.static import static
+from appPost.views import PostLista
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('appPost/', include('appPost.urls')),
+    path('', PostLista.as_view(), name="postLista"),
+     
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
