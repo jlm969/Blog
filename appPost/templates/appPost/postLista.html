@@ -1,30 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado Post</title>
-</head>
-<body>
-    <h1>Listado Post</h1>
-    <ul>
-        {%  for post in object_list   %}
-            <li>
-                <p>Titulo: {{post.titulo}}</p>
-                <p>Contenido: {{post.contenido}}</p>
-                <p>Imagen: {{post.imagen}}</p>
-                <p>
-                    <a href="{%url 'postDetalle' post.id %}">Detalle</a>
-                    <a href="{%url 'postActualizar' post.id %}">Actualizar</a>
-                    <a href="{%url 'postEliminar' post.id %}">Borrar</a>
-                 
-                </p>
-            </li>
-        {%  endfor  %}
-    </ul>
-    <p>
-        <a href="{%url 'postCrear'%}">Crear Post</a>
-    </p>
-</body>
-</html>
+{% extends 'appPost/base.html' %}
+{% block main_content %}
+
+<div class="container">
+    <div class='row'>
+    {% for post in object_list %}
+        <div class="col-4">
+            <a href="{% url 'postDetalle' post.id %}">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ post.imagen_url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a>
+                            </h5>
+                                <p class="card-text">{{ post.contenido|truncatechars:40 }}</p>
+                                <hr />                               
+                        </div>
+                <a href="{% url 'comentarioDetalle' post.id %}">Ver Comentarios</a>
+                <a href="{% url 'comentarioCrear'%}">Comentar</a>
+            </a> 
+        </div>
+            <a class="btn btn-primary" href="{% url 'postActualizar' post.id %}">Editar</a>
+            <a class="btn btn-primary" href="{% url 'postEliminar' post.id %}">Eliminar</a>
+        </div>
+        
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock main_content %}
+
+
+
+
+
+
+
+
+
+

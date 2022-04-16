@@ -21,26 +21,6 @@ from appPost.models import Post, Comentario, VistaPost, MeGusta
 
 # Create your views here.
 
-
-def inicio(request):
-
- #   if request.user.username:
- #       avatar = Avatar.objects.filter(user=request.user)
-
- #       if len(avatar) > 0:
- #           imagen = avatar[0].imagen.url
-  #      else:
-  #          imagen = None
-  #  else:
-  #      imagen = None
-    #dict_ctx = {"title": "Inicio", "page": "BLOG","imagen_url": imagen}
-    dict_ctx = {"title": "Inicio", "page": "BLOG"}
-  #  return render(request, "apppedido/index.html", dict_ctx)
-    return render(request, "appPost/index.html", dict_ctx)
-
-
-
-
 # Vistas Basadas en Clases 
 
 # ListView -- Listar contenido
@@ -56,15 +36,22 @@ class PostLista(ListView):
 # CreateView -- Crear un item  
 class PostCrear(CreateView):
     model = Post
-    fields = ['titulo','contenido','imagen']
+    fields = ['titulo','contenido']
+    #fields = ['titulo','contenido', 'imagen']
     success_url = "/"
   
 # UpdateView -- Actualizar  un item
 class PostActualizar(UpdateView):
     model = Post
-    fields = ['titulo','contenido','imagen' ]
+    fields = ['contenido']
     success_url = "/"
  
+
+# CreateView -- Crear un Comentario 
+class ComentarioCrear(CreateView):
+    model = Comentario
+    fields = ['contenido']
+    success_url = "/"
 
 
 # DetailView -- obtengo un solo item
@@ -78,3 +65,12 @@ class PostEliminar(DeleteView):
     model = Post
     success_url = "/" 
 
+
+class ComentarioLista(ListView):
+    model = Comentario
+    template_name = "appPost/comentarioLista.html" 
+
+
+class ComentarioDetalle(DetailView):
+    model = Comentario
+    template_name = "appPost/comentarioDetalle.html" 

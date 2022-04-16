@@ -1,0 +1,37 @@
+{% extends 'appPost/base.html' %}
+{% block main_content %}
+
+<div class="container">
+    <div class='row'>
+    {% for post in object_list %}
+       
+            <a href="{% url 'comentarioLista' %}">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ post.imagen_url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                        <a href="{{ post.get_absolute_url }}">{{ comentario.post }}</h5>
+                        <p class="card-text">{{ comentario.contenido}}</p>
+                    <hr />                               
+                    </p>
+                    
+                </div>
+            </div>
+            <a href="{% url 'comentarioDetalle' post.id %}">Detalle Comentario</a>
+        </div>
+        
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock main_content %}
+
+
+
+
+
+
+
+
+
+

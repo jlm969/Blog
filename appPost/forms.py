@@ -1,12 +1,5 @@
 from django import forms
 from models import Post
-
-# class PostForm(forms.ModelForm):
-#     class Meta:
-#         model = Post
-#         fields = '__all__'
-
-
 class PostForm(forms.Form):
      class Meta:
          model = Post
@@ -21,14 +14,7 @@ class PostForm(forms.Form):
 #     email = forms.EmailField()
 #     localidad = forms.CharField(max_length=40)
 
-# class RepartidorFormulario(forms.Form):
-#     id_repartidor = forms.IntegerField()
-#     nombre = forms.CharField(max_length=40)
-#     apellido = forms.CharField(max_length=40)
-#     direccion = forms.CharField(max_length=40)
-#     email = forms.EmailField()
-#     num_celular = forms.CharField(max_length=40)
-#     sexo = forms.CharField(max_length=1)
+
 
 # Creo mi propio formulario para registro de usuarios a partir de la clase formulario 
 # UserCreationForm

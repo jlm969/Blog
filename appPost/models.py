@@ -43,8 +43,9 @@ class Comentario(models.Model):
     fecha_comentario = models.DateTimeField(auto_now_add=True)
     contenido = models.TextField()
 
- #   def __str__(self):
- #       return self.usuario.username
+    def __str__(self):
+        #return self.usuario.username
+        return  self.post_id, self.fecha_comentario 
 
 class VistaPost(models.Model):
 
