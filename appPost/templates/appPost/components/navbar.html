@@ -7,14 +7,23 @@
       <a class="nav-link" href="{% url 'postCrear' %}">Cear Post <span class="sr-only">(current)</span></a>
       <a class="nav-link" href="#">Comentarios <span class="sr-only">(current)</span></a>
           
-  
+   <!-- href     Recibe el nombre de una vista
       <form class="form-inline mt-2 mt-md-0">
-        <!-- href     Recibe el nombre de una vista
         <input class="form-control mr-sm-2" type="text" placeholder="buscar" aria-label="Buscar">
-        -->
-        
       </form>
-      
+ -->
+</div>
+<div>
+      {% if not request.user.is_authenticated %}
+      <a class="btn btn-primary" href="{% url 'login' %}">Iniciar sesion</a>
+             <a class="btn btn-primary" href="{% url 'Register' %}">Registrarse</a>
+        {% else %}
+            <p class="text-muted small mb-4"> {{request.user.username}} </p>
+            
+            <img src="{{imagen_url}}" alt="Imagen" width="8%">
+            <a class="btn btn-primary" href="{% url 'edit' %}">Editar Perfil</a>
+            <a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesion</a>
+
+        {% endif %}
     </div>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Iniciar Sesion</button>
   </nav>

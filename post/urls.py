@@ -23,6 +23,7 @@ from appPost.views import PostLista
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('appPost/', include('appPost.urls')),
+    path('appUsuario/', include('appUsuario.urls')),
     path('', PostLista.as_view(), name="postLista"),
      
 ]

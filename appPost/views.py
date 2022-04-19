@@ -19,6 +19,7 @@ from appPost.models import Post, Comentario, VistaPost, MeGusta
 
 
 
+
 # Create your views here.
 
 # Vistas Basadas en Clases 
@@ -29,7 +30,7 @@ from appPost.models import Post, Comentario, VistaPost, MeGusta
 # y va al principio!!!  
 
 #class PostLista(LoginRequiredMixin, ListView):
-class PostLista(ListView):
+class PostLista(LoginRequiredMixin, ListView):
     model = Post
     template_name = "appPost/postLista.html" 
 

@@ -42,6 +42,7 @@ class Comentario(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     fecha_comentario = models.DateTimeField(auto_now_add=True)
     contenido = models.TextField()
+    # autor = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         #return self.usuario.username
