@@ -58,16 +58,9 @@ class PostCrear(LoginRequiredMixin,CreateView):
 # UpdateView -- Actualizar  un item
 class PostActualizar(LoginRequiredMixin,UpdateView):
     model = Post
-    fields = ['contenido']
+    fields = ['titulo','contenido']
     success_url = "/"
  
-
-# CreateView -- Crear un Comentario 
-class ComentarioCrear(CreateView):
-    model = Comentario
-    fields = ['contenido']
-    success_url = "/"
-
 
 # DetailView -- obtengo un solo item
 class PostDetalle(DetailView):
@@ -81,11 +74,17 @@ class PostEliminar(DeleteView):
     success_url = "/" 
 
 
+# CreateView -- Crear un Comentario 
+class ComentarioCrear(LoginRequiredMixin,CreateView):
+    model = Comentario
+    fields = ['contenido']
+    success_url = "/"
+
 class ComentarioLista(ListView):
     model = Comentario
     template_name = "appPost/comentarioLista.html" 
 
 
-class ComentarioDetalle(DetailView):
+class ComentarioDetalle(LoginRequiredMixin,DetailView):
     model = Comentario
     template_name = "appPost/comentarioDetalle.html" 

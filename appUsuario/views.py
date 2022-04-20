@@ -31,7 +31,7 @@ def inicio(request):
     else:
         imagen = None
     dict_ctx = {"title": "Inicio", "page": "accaaaaaa","imagen_url": imagen}
-    return render(request, "appPost/postLista.html", dict_ctx)
+    return render(request, "appUsuario/index.html", dict_ctx)
     #return redirect ("postLista")
 
 

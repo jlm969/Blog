@@ -1,12 +1,6 @@
 {% extends 'appPost/base.html' %}
 {% block main_content %}
 
-
-<div class="container">
-    <h1>Se cargo la imagen </h1>
-    <img src="{{imagen_url}}" alt="Imagen" width="10%">
-</div>
-
 <div class="container">
     <div class='row'>
     {% for post in object_list %}
@@ -15,20 +9,19 @@
                 <div class="card" style="width: 18rem;">
                     <img src="{{ post.imagen }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a>
-                            </h5>
-                                <p class="card-text">{{ post.contenido|truncatechars:40 }}</p>
-                                <hr />                               
+                            <h5 class="card-title">{{ post.titulo }}</h5>
+                                <p class="card-text">{{ post.contenido|truncatechars:40 }}</p>                                       
                         </div>
-                <a href="{% url 'comentarioDetalle' post.id %}">Ver Comentarios</a>
-                <a href="{% url 'comentarioCrear'%}">Comentar</a>
-            </a> 
+                    </a>        
+                    <hr/>                        
+                <a href="{% url 'comentarioCrear'%}" class="text-center">Comentar</a>
         </div>
+        <br/>
+        {% if request.user.is_superuser %}    
             <a class="btn btn-primary" href="{% url 'postActualizar' post.id %}">Editar</a>
             <a class="btn btn-primary" href="{% url 'postEliminar' post.id %}">Eliminar</a>
-        </div>
-        
+            {% endif %} 
+        </div>      
     {% endfor %}
     </div>
 </div>

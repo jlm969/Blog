@@ -45,8 +45,9 @@ class Comentario(models.Model):
     # autor = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        #return self.usuario.username
-        return  self.post_id, self.fecha_comentario 
+        #return self.usuario.username 
+        return f"{self.id} | {self.contenido}  | {self.fecha_comentario }  | {self.post_id}"
+       
 
 class VistaPost(models.Model):
 

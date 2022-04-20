@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comentarios Post</title>
-</head>
-<body>
-    <h1>Comentarios del Post :</h1>
-        <p>Titulo: {{comentario.post}}</p>
-        <p>COMENTARIO: {{comentario.contenido}}</p>
-        <p>Publicado: {{comentario.fecha_comentario}}</p>
-    <p>
-        <a href="{%url 'postLista'%}">Volver</a>
-    </p>
-</body>
-</html>
+{% extends 'appPost/base.html' %}
+{% block main_content %}
+<div class="container">
+    <div class='row'>
+        <div class="col-4">
+            <h5 class="title">{{ comentario.post }}</h5>
+                <p class="text">{{comentario.contenido}}</p>
+                <p class="text">{{comentario.fecha_comentario}}</p>
+        </div>
+    </div>
+</div>
+ {% endblock main_content %}
+
+
+         
