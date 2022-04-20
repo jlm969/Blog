@@ -15,10 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 from appPost.models import Post, Comentario, VistaPost, MeGusta
-
-
-
-
+from appUsuario.views import Avatar
 
 # Create your views here.
 
@@ -30,19 +27,36 @@ from appPost.models import Post, Comentario, VistaPost, MeGusta
 # y va al principio!!!  
 
 #class PostLista(LoginRequiredMixin, ListView):
-class PostLista(LoginRequiredMixin, ListView):
+
+def inicio(request):
+
+    if request.user.username:
+        avatar = Avatar.objects.filter(user=request.user)
+
+        if len(avatar) > 0:
+            imagen = avatar[0].imagen.url
+        else:
+            imagen = None
+    else:
+        imagen = None
+    dict_ctx = {"title": "Inicio", "page": "APPPOST","imagen_url": imagen}
+    return render(request, "appPost/postLista.html", dict_ctx)
+    #return redirect ("postLista")
+
+
+class PostLista(ListView):    
     model = Post
     template_name = "appPost/postLista.html" 
 
 # CreateView -- Crear un item  
-class PostCrear(CreateView):
+class PostCrear(LoginRequiredMixin,CreateView):
     model = Post
     fields = ['titulo','contenido']
     #fields = ['titulo','contenido', 'imagen']
     success_url = "/"
   
 # UpdateView -- Actualizar  un item
-class PostActualizar(UpdateView):
+class PostActualizar(LoginRequiredMixin,UpdateView):
     model = Post
     fields = ['contenido']
     success_url = "/"

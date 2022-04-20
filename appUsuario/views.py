@@ -73,7 +73,7 @@ def register_request(request):
              usuario = form.cleaned_data.get("username")
              form.save()
              dict_ctx = {"title": "Inicio", "page": usuario}
-             return redirect ("postLista")
+             return redirect ("Login")
          else:
              dict_ctx = {"title": "Inicio", "page": "Usuario Anonimo", "errors":["No paso las validaciones"]}
              return render (request, "appUsuario/login.html", dict_ctx) 
@@ -88,7 +88,7 @@ def register_request(request):
 def actualizar_usuario(request):
      usuario = request.user
      if request.method == "POST":
-         form = UsuarioEditForm(request.POST)  #contiene los valores que vienen d ela peticion
+         form = UsuarioEditForm(request.POST)  #contiene los valores que vienen de la peticion
          if form.is_valid():
              data = form.cleaned_data
              usuario.email = data["email"]
@@ -124,6 +124,7 @@ def cargar_imagen(request):
                avatar = Avatar(user=usuario, imagen=formulario.cleaned_data["imagen"])
                avatar.save()      
            return redirect("Inicio")
+           #return redirect("login")
     else:
         formulario = AvatarFormulario()
         return render(request, "appUsuario/cargarImagen.html", {"form": formulario})

@@ -1,21 +1,12 @@
 {% extends 'appPost/base.html' %}
 
 {% block main_content %}
-    <div class="container text-center">
-
-        
-        {% if erros %}
-            
-            {% for error  in  erros %}
-                 
-                <p style = "color: red;">{{erros}}</p>     
-            
-            {% endfor %}
-                    
-
-        {% endif %}
-            
-
+    <div class="container text-center">  
+        {% if erros %}         
+            {% for error  in  erros %}        
+                <p style = "color: red;">{{erros}}</p>                
+            {% endfor %}                  
+        {% endif %}            
         <form  method="post">
             {% csrf_token %}
  <!-- Puedo Utilizar form.as_p   o as_table     probar cual me gusta mas -->
