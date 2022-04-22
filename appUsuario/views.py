@@ -30,7 +30,7 @@ def inicio(request):
             imagen = None
     else:
         imagen = None
-    dict_ctx = {"title": "Inicio", "page": "accaaaaaa","imagen_url": imagen}
+    dict_ctx = {"title": "Inicio", "page": "","imagen_url": imagen}
     return render(request, "appUsuario/index.html", dict_ctx)
     #return redirect ("postLista")
 
@@ -48,17 +48,17 @@ def login_request(request):
 
             if usuario is not None:
                 login(request, usuario)
-                dict_ctx = {"title": "Inicio", "mensaje": "Bienvenido!!!", "page": usuario}
+                #dict_ctx = {"title": "Inicio", "mensaje": "Bienvenido!!!", "page": usuario}
                 #return render (request, "appPost/postLista.html", dict_ctx)
                 return redirect ("postLista")
             else:
                 dict_ctx = {"title": "Inicio", "page": usuario, "errors":["El usuario no existe"]}
-                #return render (request, "appPost/postLista.html", dict_ctx)
-                return redirect ("login")
+                return render (request, "appUsuario/index.html", dict_ctx)
+                #return redirect ("login")
         else:
             dict_ctx = {"title": "Inicio", "page": "Usuario Anonimo", "errors":["Revise datos enviados en el formulario"]}
-            #return render (request, "appPost/postLista.html", dict_ctx)
-            return redirect ("login")
+            return render (request, "appUsuario/index.html", dict_ctx)
+            #return redirect ("login")
     else:
         form = AuthenticationForm()
         return render (request,"appUsuario/login.html", {"form": form})
@@ -67,21 +67,20 @@ def register_request(request):
      if request.method == "POST":
         # Formulario Propio de Registro
          form = UsuarioRegistroForm(request.POST)
-
-
          if form.is_valid():
              usuario = form.cleaned_data.get("username")
              form.save()
-             dict_ctx = {"title": "Inicio", "page": usuario}
-             return redirect ("Login")
+             dict_ctx = {"title": "Register", "page": "Usuario Registrado"}
+             return render (request, "appUsuario/index.html", dict_ctx)
+             #return redirect ("login")    
          else:
-             dict_ctx = {"title": "Inicio", "page": "Usuario Anonimo", "errors":["No paso las validaciones"]}
-             return render (request, "appUsuario/login.html", dict_ctx) 
+             dict_ctx = {"title": "Inicio", "page": "Datos Invalidos", "errors":["No paso las validaciones"]}
+             return render (request, "appUsuario/index.html", dict_ctx) 
+             #return redirect ("/")
             
      else:
          # Formulario Propio de Registro
         form = UsuarioRegistroForm()
-
         return render (request,"appUsuario/register.html", {"form": form} )
 
 @login_required()
@@ -97,7 +96,7 @@ def actualizar_usuario(request):
              usuario.password1 = data["password1"]
              usuario.password2 = data["password2"]
              usuario.save()
-             return redirect ("postList")
+             return redirect ("postLista")
          else:
              #form = UsuarioEditForm(initial={'email':usuario.email , 'first_name':usuario.first_name,'last_name':usuario.last_name})
              #erros = {"errors":["No paso las validaciones"]}

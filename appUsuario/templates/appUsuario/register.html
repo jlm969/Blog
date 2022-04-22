@@ -1,14 +1,15 @@
 {% extends 'appPost/base.html' %}
 
 {% block main_content %}
-</head>
-<body>
+
+    <div class="container">
+             
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Registrar" class="btn btn-primary">
     </form>
-</body>
-</html>
+    <br/>
+</div>
 
 {% endblock main_content %}

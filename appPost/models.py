@@ -3,63 +3,42 @@ from django.db import models
 from django.contrib.auth.models import User 
 # Create your models here.
 
-
-# Creo mi propio formulario para registro de usuarios a partir de la clase formulario 
-# UserCreationForm
-
-#class  Usuario(User):
-#   pass
-
-#   def __str__(self):
-#         return self.user_name
-    # email = forms.EmailField()
-    # password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput) 
-    # password2 = forms.CharField(label="Repetir Contraseña", widget=forms.PasswordInput)  
-
-    # class Meta:
-    #     model = User
-    #     fields = ['username', 'email', 'password1','password2']
-    #     #Sacar los mensajes de ayuda
-    #     help_texts = {k:"" for k in fields}
-
-
-
 class Post(models.Model):
 
     titulo = models.CharField(max_length=80)
+    subtitulo = models.CharField(max_length=80)
     contenido = models.TextField()
-    imagen = models.ImageField()
+    imagen = models.ImageField(upload_to='avatares', null=True, blank=True)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     ultima_actualizacion = models.DateTimeField(auto_now=True)
-   # autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
     
 
     def __str__(self):
-        return self.titulo
+         return f"{self.titulo} | {self.imagen} | {self.autor}"
 
 class Comentario(models.Model):
 
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     fecha_comentario = models.DateTimeField(auto_now_add=True)
     contenido = models.TextField()
-    # autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        #return self.usuario.username 
-        return f"{self.id} | {self.contenido}  | {self.fecha_comentario }  | {self.post_id}"
+       return f"{self.post.titulo} | {self.contenido}  | {self.fecha_comentario }  | {self.autor}"
        
 
 class VistaPost(models.Model):
 
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     fecha_vista = models.DateTimeField(auto_now_add=True)
-
-#  def __str__(self):
-#     return self.usuario.username  
+    usuario= models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return f"Post:{self.post.titulo}  |  Visto:  {self.usuario}  | Fecha: {self.fecha_vista}"
 
 class MeGusta(models.Model):
 
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-
-  #  def __str__(self):
-  #      return self.usuario.user_name  
+    usuario= models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+       return f"Post:{ self.post.titulo }  | Me Gusta: {self.usuario}"

@@ -51,14 +51,13 @@ class PostLista(ListView):
 # CreateView -- Crear un item  
 class PostCrear(LoginRequiredMixin,CreateView):
     model = Post
-    fields = ['titulo','contenido']
-    #fields = ['titulo','contenido', 'imagen']
+    fields = ['titulo','subtitulo','contenido','imagen', 'autor']
     success_url = "/"
   
 # UpdateView -- Actualizar  un item
 class PostActualizar(LoginRequiredMixin,UpdateView):
     model = Post
-    fields = ['titulo','contenido']
+    fields = ['titulo','subtitulo','contenido','autor']
     success_url = "/"
  
 
@@ -77,7 +76,7 @@ class PostEliminar(DeleteView):
 # CreateView -- Crear un Comentario 
 class ComentarioCrear(LoginRequiredMixin,CreateView):
     model = Comentario
-    fields = ['contenido']
+    fields = ['post','contenido','autor']
     success_url = "/"
 
 class ComentarioLista(ListView):

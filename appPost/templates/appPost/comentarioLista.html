@@ -3,27 +3,19 @@
 
 <div class="container">
     <div class='row'>
-    {% for post in object_list %}
-       
-            <a href="{% url 'comentarioLista' %}">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ post.imagen_url }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                        <a href="{{ post.get_absolute_url }}">{{ comentario.post }}</h5>
-                        <p class="card-text">{{ comentario.contenido}}</p>
-                    <hr />                               
-                    </p>
-                    
-                </div>
-            </div>
-            <a href="{% url 'comentarioDetalle' post.id %}">Detalle Comentario</a>
-        </div>
-        
+        <div class="col-5">
+        {% for comentario in object_list %}
+        <h5 class="card-title">{{comentario.post.titulo}}</h5> 
+        <div class="card-body">{{ comentario.contenido}}
+         
+        <hr/>                                    
+        <p class="text">{{comentario.autor}}</p> 
+        <p class="text">{{comentario.fecha_comentario}}
+        </div>             
     {% endfor %}
     </div>
 </div>
-
+</div>
 {% endblock main_content %}
 
 

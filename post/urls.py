@@ -19,12 +19,11 @@ from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
 from appPost.views import PostLista
+from appUsuario.views import login_request
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('appPost/', include('appPost.urls')),
-    path('appUsuario/', include('appUsuario.urls')),
-    path('', PostLista.as_view(), name="postLista"),
-     
+    path('', include('appPost.urls')),
+    path('appUsuario/', include('appUsuario.urls')),   
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

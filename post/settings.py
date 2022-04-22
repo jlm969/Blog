@@ -114,6 +114,15 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Para Argentina
+#LANGUAGE_CODE = 'es/ar'
+
+#TIME_ZONE = 'UTC-3'
+
+# USE_I18N = True
+
+# USE_TZ = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -130,8 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = "/media/"
 MEDIA_ROUTE = os.path.join(BASE_DIR,'media')
 
-
-
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
+# URL de LOGIN
+LOGIN_URL = "/appUsuario/login/"

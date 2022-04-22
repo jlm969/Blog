@@ -9,8 +9,10 @@
                     <img src="{{ post.imagen }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.titulo }}</h5>
+                            <h5 class="card-title">{{ post.subtitulo }}</h5>
                                 <p class="card-text">{{ post.contenido}}</p>
                                 <hr /> 
+                                <p>Autor: {{post.autor}}</p>
                                 <p>Publicado: {{post.fecha_publicacion}}</p>
                                 <p>Actualizado : {{post.ultima_actualizacion}}</p>                              
                         </div>
@@ -18,7 +20,8 @@
         </div>
          
     </div>    
-    <br/>  
+    <br/>
+    <a href="{% url 'comentarioLista'%}">Comentarios</a>  
         <a href="{% url 'comentarioDetalle' post.id %}">Ver Comentarios</a>
         <a href="{% url 'comentarioCrear'%}">Nuevo Comentario</a>
 </div>    

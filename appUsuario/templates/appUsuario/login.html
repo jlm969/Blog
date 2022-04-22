@@ -1,16 +1,13 @@
 {% extends 'appPost/base.html' %}
 
 {% block main_content %}
-</head>
-<body>
+<div class="container">
     <form method="post">
         {% csrf_token %}
 
         {{  form.as_p   }}
-        <button type="submin">Iniciar Sesion</button> 
-        
+        <button type="submin">Iniciar Sesion</button>      
     </form>
-    
-</body>
-</html>
+    <br/>
+</div>   
 {% endblock main_content %}

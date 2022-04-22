@@ -3,10 +3,13 @@
 <div class="container">
     <div class='row'>
         <div class="col-4">
-            <h5 class="title">{{ comentario.post }}</h5>
-                <p class="text">{{comentario.contenido}}</p>
-                <p class="text">{{comentario.fecha_comentario}}</p>
-        </div>
+            <h5 class="title"> POST: {{ comentario.post.titulo }}</h5>
+            <hr/> 
+                <p class="text">{{comentario.contenido}}</p> 
+                <hr/> 
+                <p class="text">{{comentario.autor}} | {{comentario.fecha_comentario}}</p> 
+                   
+        </div>  
     </div>
 </div>
  {% endblock main_content %}
