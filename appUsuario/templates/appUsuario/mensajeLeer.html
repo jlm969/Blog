@@ -1,0 +1,21 @@
+{% extends 'appUsuario/base.html' %}
+{% block main_content %}
+<div class="container">
+    <div class='row'>
+        <div class="col-4">
+            <h5 class="title">{{ mensaje.destinatario.username }}</h5>
+            <hr/> 
+                <p class="text">{{mensaje.asunto}}</p> 
+                <p class="text">{{mensaje.cuerpo}}</p> 
+                <hr/> 
+                <p class="text">{{mensaje.fecha}}</p> 
+                   
+        </div>  
+    </div>
+    <a href="{%url 'mensajeLista'%}">Volver</a>
+</div>
+
+ {% endblock main_content %}
+
+
+         

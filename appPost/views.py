@@ -27,7 +27,7 @@ from appUsuario.views import Avatar
 # y va al principio!!!  
 
 #class PostLista(LoginRequiredMixin, ListView):
-
+   
 def inicio(request):
 
     if request.user.username:

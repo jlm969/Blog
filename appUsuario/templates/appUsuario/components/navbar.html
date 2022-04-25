@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <a class="navbar-brand" href="{% url 'postLista' %}">Inicio</a>
+  <a class="navbar-brand" href="{% url 'Inicio' %}">Home User</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+
+  </div>
+         
+    {% if not request.user.is_authenticated %}
+           <a class="navbar-brand" href="{% url 'login' %}">Iniciar sesion</a>
+           <a class="navbar-brand" href="{% url 'Register' %}">Registrarse</a>  
+    {% else %}      
+          <h5 class="navbar-brand"> {{request.user.username}} </h5>
+          
+           <img src="{{imagen_url}}" alt="Imagen" width="8%">
+         <a class="navbar-brand" href="{% url 'logout' %}">Cerrar sesion</a>
+   {% endif %}      
+</nav>

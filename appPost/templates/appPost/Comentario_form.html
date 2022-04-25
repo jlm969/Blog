@@ -2,11 +2,13 @@
 
 {% block main_content %}
 <body>
+    <div class="container">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}   
     <input type="submit" value="Cargar/Actualizar">   
 </form> 
+</div>
 </body>
 
 {% endblock main_content %}

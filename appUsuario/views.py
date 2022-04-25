@@ -17,7 +17,17 @@ from django.contrib.auth import login, logout , authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
+
+# Vistas Basadas en Clases 
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView 
+
 # Create your views here.
+
+def about(request):
+    dict_ctx = {"title": "about", "page": ""}
+    return render(request, "appUsuario/about.html", dict_ctx)
 
 def inicio(request):
 
@@ -127,3 +137,19 @@ def cargar_imagen(request):
     else:
         formulario = AvatarFormulario()
         return render(request, "appUsuario/cargarImagen.html", {"form": formulario})
+
+
+# CreateView -- Crear un Comentario 
+class MensajeEnviar(CreateView):
+    model = Mensaje
+    fields = ['destinatario','asunto','cuerpo']
+    success_url = "/appUsuario"
+
+class MensajeLista(ListView):
+    model = Mensaje
+    template_name = "appUsuario/mensajeLista.html" 
+
+
+class MensajeLeer(DetailView):
+    model = Mensaje
+    template_name = "appUsuario/mensajeLeer.html" 

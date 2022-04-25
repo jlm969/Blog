@@ -1,16 +1,15 @@
-{% extends 'appPost/base.html' %}
+{% extends 'appUsuario/base.html' %}
 
 {% block main_content %}
-
-
 <body>
     <div class="container">
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-    <input type="submit" value="Cargar/Actualizar">   
+        {{ form.as_p }}   
+    <input type="submit" value="Enviar">   
 </form> 
 </div>
 </body>
+
 {% endblock main_content %}
 

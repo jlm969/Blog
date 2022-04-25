@@ -1,9 +1,11 @@
 {% extends 'appPost/base.html' %}
 {% block main_content %}
 <body>
+    <div class="container">
     <h1>Post : {{ object }}</h1>
     <p>
         <a href="{%url 'postLista'%}">Volver</a>
     </p>
+</div>
 </body>
 {% endblock main_content %}

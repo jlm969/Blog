@@ -5,7 +5,7 @@
         <h1>Confirma Eliminar</h1>  
             <form  method="post">
             {% csrf_token %}
-            Esta seguro que quiere eliminar el Post :   {{object}} ? 
+            Esta seguro que quiere eliminar el Post :   {{object.titulo}} ? 
             <button class='btn btn-primary' type='submit'>Confirmar</button>
                 <p>
                     <a href="{%url 'postLista'%}">Volver</a>

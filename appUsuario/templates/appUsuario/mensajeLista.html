@@ -1,0 +1,25 @@
+{% extends 'appUsuario/base.html' %}
+{% block main_content %}
+
+<div class="container">
+    <div class='row'>
+        <div class="col-max">
+            {% for mensaje in object_list %}
+            
+            <li class="list-inline-item">{{mensaje.destinatario}} |{{ mensaje.asunto}}  <a href="{% url 'mensajeLeer' mensaje.id %}">Leer Mensaje</a></li>
+            <hr/>                                              
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock main_content %}
+
+
+
+
+
+
+
+
+
+
