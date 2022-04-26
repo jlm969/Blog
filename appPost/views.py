@@ -33,20 +33,23 @@ def posteo(request):
 
     posteos = Post.objects.all()
     if request.method == 'POST':
-        posteo = PosteoFormulario(request.POST)
-        if posteo.is_valid():    
-           datos = posteo.cleaned_data
-           posteo_nuevo = Post(datos['titulo'], datos['subtitulo'], datos['contenido'], datos['imagen'])        
-           posteo_nuevo.save()       
-           formulario = PosteoFormulario()
-           return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
-        else: 
+         posteo = PosteoFormulario(request.POST)
+         if posteo.is_valid():    
+            datos = posteo.cleaned_data
+            print(datos)
+            posteo_nuevo = Post(datos['titulo'], datos['subtitulo'], datos['contenido'], datos['imagen'],datos['autor'])        
+            posteo_nuevo.save()       
             formulario = PosteoFormulario()
-            return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Error en datos","formulario":formulario, "imagen_url": imagen})   
+            return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
+         else: 
+             formulario = PosteoFormulario()
+             return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Error en datos","formulario":formulario, "imagen_url": imagen})   
     else:
-        formulario = PosteoFormulario()
-        return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
+         formulario = PosteoFormulario()
+         return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
 
+
+    
 
 class PostLista(ListView):    
     model = Post

@@ -10,7 +10,7 @@ class PosteoFormulario(forms.Form):
      imagen = forms.ImageField()
      #fecha_publicacion = forms.DateTimeField()
      #ultima_actualizacion = forms.DateTimeField()
-     #autor = forms.CharField(max_length=10)
+     autor = forms.IntegerField()
 
 # class PostForm(forms.Form):
 #      class Meta:

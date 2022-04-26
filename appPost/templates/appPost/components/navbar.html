@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="{% url 'posteo' %}">Inicio</a>
+    <a class="navbar-brand" href="{% url 'postLista' %}">Inicio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,7 +16,7 @@
              <a class="navbar-brand" href="{% url 'Register' %}">Registrarse</a>  
       {% else %}      
             <p class="text-muted"> {{request.user.username}} </p>
-            <img src="{{imagen_url}}" alt="Imagen" width="8%">
+            <img src="{{objet.post.imagen.url}}" alt="Imagen" width="8%">
             <a class=" nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
      {% endif %}  
  

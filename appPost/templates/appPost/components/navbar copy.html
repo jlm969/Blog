@@ -23,7 +23,7 @@
              <a class="navbar-brand" href="{% url 'Register' %}">Registrarse</a>  
       {% else %}      
             <p class="text-muted"> {{request.user.username}} </p>
-            <img src="{{imagen_url}}" alt="Imagen" width="8%">
+            <img src="{{objet.usuario.imagen_url}}" alt="Imagen" width="8%">
             <a class="nav-link" href="{% url 'edit' %}">Editar Perfil</a>
             <a class=" nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
 

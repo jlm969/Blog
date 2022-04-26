@@ -4,18 +4,22 @@
 
 <div class="container">
     <div class='row'>
-        <div class="col-4">
-                <div class="card" style="width: 50rem;">
-                    <img src="{{ posteo.imagen.url }}" class="card-img-top" alt="...">
+        <div class="col-12">
+                <div class="card" style="width: 15rem;">
+                    <img src="{{ post.imagen.url }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.titulo }}</h5>
                             <h5 class="card-title">{{ post.subtitulo }}</h5>
+                        </div>
+                    </div>
+                     
                                 <p class="card-text">{{ post.contenido}}</p>
                                 <hr /> 
+          
                                 <p>Autor: {{post.autor}}</p>
                                 <p>Publicado: {{post.fecha_publicacion}}</p>
                                 <p>Actualizado : {{post.ultima_actualizacion}}</p>                              
-                        </div>
+                                
                 </div>
         </div>
          
