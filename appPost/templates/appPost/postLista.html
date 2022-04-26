@@ -7,7 +7,7 @@
         <div class="col-4">
             <a href="{% url 'postDetalle' post.id %}">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{Avatar.objetcts.imagen_url}}" class="card-img-top" alt="...">
+                    <img src="{{Post.objetcts.imagen_url}}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h3 class="card-title">{{ post.titulo }}</h3>
                                 <p class="card-text">{{ post.contenido|truncatechars:40 }}</p>                                       

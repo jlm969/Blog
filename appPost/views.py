@@ -1,5 +1,9 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from datetime import datetime
+from appPost.models import *
+from appPost.forms import PosteoFormulario
+from appUsuario.models import Avatar
 # Vistas Basadas en Clases 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -14,21 +18,8 @@ from django.contrib.auth import login, logout , authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-from appPost.models import Post, Comentario, VistaPost, MeGusta
-from appUsuario.views import Avatar
-
-# Create your views here.
-
-# Vistas Basadas en Clases 
-
-# ListView -- Listar contenido
-# A este tipo de Vistas basadas en  Clases  le puedo pasar  LoginRequiredMixin  
-# para que solo un usuario logueado pueda accederla
-# y va al principio!!!  
-
-#class PostLista(LoginRequiredMixin, ListView):
-   
-def inicio(request):
+ 
+def posteo(request):
 
     if request.user.username:
         avatar = Avatar.objects.filter(user=request.user)
@@ -39,9 +30,22 @@ def inicio(request):
             imagen = None
     else:
         imagen = None
-    dict_ctx = {"title": "Inicio", "page": "APPPOST","imagen_url": imagen}
-    return render(request, "appPost/postLista.html", dict_ctx)
-    #return redirect ("postLista")
+
+    posteos = Post.objects.all()
+    if request.method == 'POST':
+        posteo = PosteoFormulario(request.POST)
+        if posteo.is_valid():    
+           datos = posteo.cleaned_data
+           posteo_nuevo = Post(datos['titulo'], datos['subtitulo'], datos['contenido'], datos['imagen'])        
+           posteo_nuevo.save()       
+           formulario = PosteoFormulario()
+           return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
+        else: 
+            formulario = PosteoFormulario()
+            return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Error en datos","formulario":formulario, "imagen_url": imagen})   
+    else:
+        formulario = PosteoFormulario()
+        return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
 
 
 class PostLista(ListView):    
@@ -52,13 +56,13 @@ class PostLista(ListView):
 class PostCrear(LoginRequiredMixin,CreateView):
     model = Post
     fields = ['titulo','subtitulo','contenido','imagen', 'autor']
-    success_url = "/"
+    success_url = "/posteo"
   
 # UpdateView -- Actualizar  un item
 class PostActualizar(LoginRequiredMixin,UpdateView):
     model = Post
-    fields = ['titulo','subtitulo','contenido','autor']
-    success_url = "/"
+    fields = ['titulo','subtitulo','contenido','imagen','autor']
+    success_url = "/posteo"
  
 
 # DetailView -- obtengo un solo item

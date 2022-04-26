@@ -1,0 +1,44 @@
+{% extends 'appPost/base.html' %}
+
+{% block main_content %}
+<body>
+ <div class="container">
+        <div class='row'>
+        {% for posteo in posteos %}
+            <div class="col-4">
+                <a href="{% url 'postDetalle' posteo.id %}">
+                    <div class="card" style="width: 15rem ;">
+                        <img src="{{posteo.imagen.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ posteo.titulo }}</h3>
+                                    <p class="card-text">{{ posteo.contenido|truncatechars:40 }}</p>                                       
+                            </div>                 
+                     </div>  
+                </a>   
+                <br/>
+                {% if request.user.is_superuser %}    
+                    <a class="btn btn-primary" href="{% url 'postActualizar' posteo.id %}">Editar</a>
+                    <a class="btn btn-primary" href="{% url 'postEliminar' posteo.id %}">Eliminar</a>
+                {% endif %}    
+            </div> 
+            {% endfor %}       
+        </div>  
+        <br/>         
+</div>           
+
+<!-- Formulario de Posteos  , pasado en la vista del Post-->
+<div class="container mt-5">
+    {% if formulario.errors %}
+           <p style="color:red"> Problemas con los datos cargados</p>
+       {% endif %}
+           <form action="" method='POST' class="form-group"  enctype="multipart/form-data">
+               {% csrf_token %}
+               <table>
+                   {{formulario.as_table}}
+               </table>
+              <br> 
+              <p><input type="submit" value="Agregar Post"> </p>
+           </form>
+   </div>
+</body>
+{% endblock main_content %}

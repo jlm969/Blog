@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
-from appPost.views import PostLista
+
 from appUsuario.views import login_request
 
 urlpatterns = [

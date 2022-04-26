@@ -3,12 +3,12 @@
 <body>
     <div class="container">
         <h1>Confirma Eliminar</h1>  
-            <form  method="post">
+            <form  method="post" enctype="multipart/form-data">
             {% csrf_token %}
             Esta seguro que quiere eliminar el Post :   {{object.titulo}} ? 
             <button class='btn btn-primary' type='submit'>Confirmar</button>
                 <p>
-                    <a href="{%url 'postLista'%}">Volver</a>
+                    <a href="{%url 'posteo'%}">Volver</a>
                 </p>
             </form>
     </div>       

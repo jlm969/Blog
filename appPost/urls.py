@@ -3,6 +3,9 @@ from appPost.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
+
+    path('posteo', posteo, name="posteo"),
+
     path('', PostLista.as_view(), name="postLista"),
     path('post/crear/', PostCrear.as_view(), name="postCrear"),
     path('post/detalle/<pk>/', PostDetalle.as_view(), name="postDetalle"),

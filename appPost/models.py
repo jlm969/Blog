@@ -1,6 +1,7 @@
 from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User 
+
 # Create your models here.
 
 class Post(models.Model):
@@ -8,7 +9,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=80)
     subtitulo = models.CharField(max_length=80)
     contenido = models.TextField()
-    imagen = models.ImageField(upload_to='avatares', null=True, blank=True)
+    imagen = models.ImageField(upload_to='posteos', null=True, blank=True)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     ultima_actualizacion = models.DateTimeField(auto_now=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)

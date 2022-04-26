@@ -5,7 +5,7 @@
         <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">                       
+                    <div class="col-lg-9">                       
                             {% if request.user.is_authenticated %}
                                 <h4>    
                                     <a class="nav-link" href="{% url 'mensajeEnviar' %}">Enviar Mensaje</a>
@@ -16,11 +16,15 @@
                                 <a class="nav-link" href="{% url 'mensajeLista' %}">Mensajes</a>
                             </h4>                          
                              {% endif %} 
+                            </div>
+              
+                            <div>   
                             {% if request.user.is_staff %}   
                             <h4>       
                                 <a class="nav-link" href="{% url 'CargarImagen' %}">Cambiar Imagen</a>
                             </h4>                          
-                            {% endif %}                        
+                            {% endif %}   
+                                         
                             {% if request.user.is_authenticated %}
                                 <h4>    
                                     <a class="nav-link" href="{% url 'edit' %}">Editar Perfil</a>
@@ -31,6 +35,7 @@
                             <a class="nav-link" href="/admin/">Panel Admin</a> 
                             </h4>                          
                             {% endif %}  
-            </div>
-        </section>
+                        </div>
+                    </section>        
+        
         {% endblock main_content %}

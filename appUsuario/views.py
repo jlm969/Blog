@@ -103,6 +103,8 @@ def actualizar_usuario(request):
              usuario.email = data["email"]
              usuario.first_name = data["first_name"]
              usuario.last_name = data["last_name"]
+             usuario.descripcion = data["descripcion"]
+             usuario.webpage = data["webpage"]
              usuario.password1 = data["password1"]
              usuario.password2 = data["password2"]
              usuario.save()

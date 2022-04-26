@@ -20,13 +20,18 @@ class  UsuarioEditForm(UserCreationForm):
     email = forms.EmailField()
     first_name = forms.CharField(label="Nombre")
     last_name = forms.CharField(label="Apellido")
+    descripcion = forms.CharField(label="Descripcion")
+    email = forms.EmailField(label="Email")
+    webpage = forms.CharField(label="Web")  
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput) 
-    password2 = forms.CharField(label="Repetir Contraseña", widget=forms.PasswordInput) 
+    password2 = forms.CharField(label="Repetir Contraseña", widget=forms.PasswordInput)
+
      
 
     class Meta:
         model = User
-        fields = ['first_name','last_name','email', 'password1','password2']
+        fields = ['first_name','last_name','descripcion',
+                 'email','webpage','password1','password2']
         #Sacar los mensajes de ayuda
         help_texts = {k:"" for k in fields}
 
