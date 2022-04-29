@@ -59,13 +59,13 @@ class PostLista(ListView):
 class PostCrear(LoginRequiredMixin,CreateView):
     model = Post
     fields = ['titulo','subtitulo','contenido','imagen', 'autor']
-    success_url = "/posteo"
+    success_url = "/"
   
 # UpdateView -- Actualizar  un item
 class PostActualizar(LoginRequiredMixin,UpdateView):
     model = Post
     fields = ['titulo','subtitulo','contenido','imagen','autor']
-    success_url = "/posteo"
+    success_url = "/"
  
 
 # DetailView -- obtengo un solo item
