@@ -5,13 +5,13 @@
     <div class='row'>
         <div class="col-5">
         {% for comentario in object_list %}
-        <h5 class="card-title">{{comentario.post.titulo}}</h5> 
-        <div class="card-body">{{ comentario.contenido}}
-         
-        <hr/>                                    
-        <p class="text">{{comentario.autor}}</p> 
-        <p class="text">{{comentario.fecha_comentario}}
-        </div>             
+                <h5 class="card-title">{{comentario.post.titulo}}</h5> 
+                <div class="card-body">{{ comentario.contenido}}       
+                  <hr/>                                    
+                 <p class="text">{{comentario.autor}}</p> 
+                  <p class="text">{{comentario.fecha_comentario}}
+             </div>  
+                 
     {% endfor %}
     </div>
 </div>

@@ -40,13 +40,13 @@ def posteo(request):
             posteo_nuevo = Post(datos['titulo'], datos['subtitulo'], datos['contenido'], datos['imagen'],datos['autor'])        
             posteo_nuevo.save()       
             formulario = PosteoFormulario()
-            return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
+            return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"","formulario":formulario, "imagen_url": imagen})
          else: 
              formulario = PosteoFormulario()
              return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Error en datos","formulario":formulario, "imagen_url": imagen})   
     else:
          formulario = PosteoFormulario()
-         return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"Posteos","formulario":formulario, "imagen_url": imagen})
+         return render(request, "appPost/posteo.html",{"posteos":posteos, "title":"Post", "page":"","formulario":formulario, "imagen_url": imagen})
 
 
     
@@ -91,6 +91,17 @@ class ComentarioLista(ListView):
     template_name = "appPost/comentarioLista.html" 
 
 
-class ComentarioDetalle(LoginRequiredMixin,DetailView):
+class ComentarioDetalle(DetailView):
     model = Comentario
     template_name = "appPost/comentarioDetalle.html" 
+
+
+# def buscar_comentario(request):
+
+#     #data = request.GET['id']
+#     #if data:
+#         comentario = Comentario.objects.filter(post_id=2)
+       
+#         return render(request, "appPost/buscarComentario.html", {'comentario':comentario[0]}) 
+
+#     #return render(request, "appPost/buscarComentario.html") #le paso una plantilla .html    

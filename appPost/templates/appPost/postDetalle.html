@@ -15,7 +15,6 @@
                      
                                 <p class="card-text">{{ post.contenido}}</p>
                                 <hr /> 
-          
                                 <p>Autor: {{post.autor}}</p>
                                 <p>Publicado: {{post.fecha_publicacion}}</p>
                                 <p>Actualizado : {{post.ultima_actualizacion}}</p>                              
@@ -23,11 +22,22 @@
                 </div>
         </div>
          
-    </div>    
+    </div> 
     <br/>
-    <a href="{% url 'comentarioLista'%}">Comentarios</a>  
-        <a href="{% url 'comentarioDetalle' post.id %}">Ver Comentarios</a>
-        <a href="{% url 'comentarioCrear'%}">Nuevo Comentario</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="{% url 'comentarioLista' %}">Comentarios</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="{% url 'comentarioDetalle' post.id %}">Ver Comentarios</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="{% url 'comentarioCrear'%}">Nuevo Comentario</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
 </div>    
 <br/>     
 {% endblock main_content %}

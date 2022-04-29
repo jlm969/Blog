@@ -26,7 +26,16 @@ from django.views.generic.edit import CreateView
 # Create your views here.
 
 def about(request):
-    dict_ctx = {"title": "about", "page": ""}
+    if request.user.username:
+        avatar = Avatar.objects.filter(user=request.user)
+
+        if len(avatar) > 0:
+            imagen = avatar[0].imagen.url
+        else:
+            imagen = None
+    else:
+        imagen = None
+    dict_ctx = {"title": "Inicio", "page": "","imagen_url": imagen}
     return render(request, "appUsuario/about.html", dict_ctx)
 
 def inicio(request):
@@ -42,7 +51,7 @@ def inicio(request):
         imagen = None
     dict_ctx = {"title": "Inicio", "page": "","imagen_url": imagen}
     return render(request, "appUsuario/index.html", dict_ctx)
-    #return redirect ("postLista")
+ 
 
 
 
@@ -60,15 +69,15 @@ def login_request(request):
                 login(request, usuario)
                 #dict_ctx = {"title": "Inicio", "mensaje": "Bienvenido!!!", "page": usuario}
                 #return render (request, "appPost/postLista.html", dict_ctx)
-                return redirect ("postLista")
+                return redirect ("posteo")
             else:
                 dict_ctx = {"title": "Inicio", "page": usuario, "errors":["El usuario no existe"]}
                 return render (request, "appUsuario/index.html", dict_ctx)
-                #return redirect ("login")
+               
         else:
             dict_ctx = {"title": "Inicio", "page": "Usuario Anonimo", "errors":["Revise datos enviados en el formulario"]}
             return render (request, "appUsuario/index.html", dict_ctx)
-            #return redirect ("login")
+            
     else:
         form = AuthenticationForm()
         return render (request,"appUsuario/login.html", {"form": form})
@@ -82,11 +91,11 @@ def register_request(request):
              form.save()
              dict_ctx = {"title": "Register", "page": "Usuario Registrado"}
              return render (request, "appUsuario/index.html", dict_ctx)
-             #return redirect ("login")    
+               
          else:
              dict_ctx = {"title": "Inicio", "page": "Datos Invalidos", "errors":["No paso las validaciones"]}
              return render (request, "appUsuario/index.html", dict_ctx) 
-             #return redirect ("/")
+            
             
      else:
          # Formulario Propio de Registro
@@ -108,7 +117,7 @@ def actualizar_usuario(request):
              usuario.password1 = data["password1"]
              usuario.password2 = data["password2"]
              usuario.save()
-             return redirect ("postLista")
+             return redirect ("posteo")
          else:
              #form = UsuarioEditForm(initial={'email':usuario.email , 'first_name':usuario.first_name,'last_name':usuario.last_name})
              #erros = {"errors":["No paso las validaciones"]}
@@ -135,7 +144,7 @@ def cargar_imagen(request):
                avatar = Avatar(user=usuario, imagen=formulario.cleaned_data["imagen"])
                avatar.save()      
            return redirect("Inicio")
-           #return redirect("login")
+           
     else:
         formulario = AvatarFormulario()
         return render(request, "appUsuario/cargarImagen.html", {"form": formulario})
